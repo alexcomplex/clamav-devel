@@ -171,21 +171,21 @@ struct cli_mtarget {
 
 #define CLI_MTARGETS 15
 static const struct cli_mtarget cli_mtargets[CLI_MTARGETS] =  {
-    { {0, 0},                                   "GENERIC",      0,  0, 1, 1 },
-    { {CL_TYPE_MSEXE, 0},                       "PE",           1,  0, 1, 1 },
-    { {CL_TYPE_MSOLE2, 0},                      "OLE2",         2,  1, 0, 1 },
-    { {CL_TYPE_HTML, 0},                        "HTML",         3,  1, 0, 1 },
-    { {CL_TYPE_MAIL, 0},                        "MAIL",         4,  1, 1, 1 },
-    { {CL_TYPE_GRAPHICS, 0},                    "GRAPHICS",     5,  1, 0, 1 },
-    { {CL_TYPE_ELF, 0},                         "ELF",          6,  1, 0, 1 },
-    { {CL_TYPE_TEXT_ASCII, 0},                  "ASCII",        7,  1, 1, 1 },
-    { {CL_TYPE_ERROR, 0},                       "NOT USED",     8,  1, 0, 1 },
+    { { CL_TYPE_ANY, CL_TYPE_ANY },						"GENERIC",      0,  0, 1, 1 },
+    { {CL_TYPE_MSEXE, CL_TYPE_ANY },                       "PE",           1,  0, 1, 1 },
+    { {CL_TYPE_MSOLE2, CL_TYPE_ANY },                      "OLE2",         2,  1, 0, 1 },
+    { {CL_TYPE_HTML, CL_TYPE_ANY },                        "HTML",         3,  1, 0, 1 },
+    { {CL_TYPE_MAIL, CL_TYPE_ANY },                        "MAIL",         4,  1, 1, 1 },
+    { {CL_TYPE_GRAPHICS, CL_TYPE_ANY },                    "GRAPHICS",     5,  1, 0, 1 },
+    { {CL_TYPE_ELF, CL_TYPE_ANY },                         "ELF",          6,  1, 0, 1 },
+    { {CL_TYPE_TEXT_ASCII, CL_TYPE_ANY },                  "ASCII",        7,  1, 1, 1 },
+    { {CL_TYPE_ERROR, CL_TYPE_ANY },                       "NOT USED",     8,  1, 0, 1 },
     { {CL_TYPE_MACHO, CL_TYPE_MACHO_UNIBIN},    "MACH-O",       9,  1, 0, 2 },
-    { {CL_TYPE_PDF, 0},                         "PDF",         10,  1, 0, 1 },
-    { {CL_TYPE_SWF, 0},                         "FLASH",       11,  1, 0, 1 },
-    { {CL_TYPE_JAVA, 0},                        "JAVA",        12,  1, 0, 1 },
-    { {CL_TYPE_INTERNAL, 0},                    "INTERNAL",    13,  1, 0, 1 },
-    { {CL_TYPE_OTHER, 0},                       "OTHER",       14,  1, 0, 1 }
+    { {CL_TYPE_PDF, CL_TYPE_ANY },                         "PDF",         10,  1, 0, 1 },
+    { {CL_TYPE_SWF, CL_TYPE_ANY },                         "FLASH",       11,  1, 0, 1 },
+    { {CL_TYPE_JAVA, CL_TYPE_ANY },                        "JAVA",        12,  1, 0, 1 },
+    { {CL_TYPE_INTERNAL, CL_TYPE_ANY },                    "INTERNAL",    13,  1, 0, 1 },
+    { {CL_TYPE_OTHER, CL_TYPE_ANY },                       "OTHER",       14,  1, 0, 1 }
 };
 
 #define CLI_OFF_ANY         0xffffffff

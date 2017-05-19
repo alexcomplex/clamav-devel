@@ -84,8 +84,9 @@ blobDestroy(blob *b)
 #endif
 
 	assert(b != NULL);
+#ifdef	CL_DEBUG
 	assert(b->magic == BLOBCLASS);
-
+#endif
 	if(b->name)
 		free(b->name);
 	if(b->data)
@@ -120,7 +121,9 @@ blobToMem(blob *b)
 	void *ret;
 
 	assert(b != NULL);
+#ifdef	CL_DEBUG
 	assert(b->magic == BLOBCLASS);
+#endif
 
 	if(!b->isClosed)
 		blobClose(b);
@@ -140,7 +143,9 @@ void
 blobSetFilename(blob *b, const char *dir, const char *filename)
 {
 	assert(b != NULL);
+#ifdef	CL_DEBUG
 	assert(b->magic == BLOBCLASS);
+#endif
 	assert(filename != NULL);
 
     UNUSEDPARAM(dir);
@@ -160,7 +165,9 @@ static const char *
 blobGetFilename(const blob *b)
 {
 	assert(b != NULL);
+#ifdef	CL_DEBUG
 	assert(b->magic == BLOBCLASS);
+#endif
 
 	return b->name;
 }
@@ -177,7 +184,9 @@ blobAddData(blob *b, const unsigned char *data, size_t len)
 #endif
 
 	assert(b != NULL);
+#ifdef	CL_DEBUG
 	assert(b->magic == BLOBCLASS);
+#endif
 	assert(data != NULL);
 
 	if(len == 0)
@@ -257,7 +266,9 @@ unsigned char *
 blobGetData(const blob *b)
 {
 	assert(b != NULL);
+#ifdef	CL_DEBUG
 	assert(b->magic == BLOBCLASS);
+#endif
 
 	if(b->len == 0)
 		return NULL;
@@ -268,7 +279,9 @@ size_t
 blobGetDataSize(const blob *b)
 {
 	assert(b != NULL);
+#ifdef	CL_DEBUG
 	assert(b->magic == BLOBCLASS);
+#endif
 
 	return b->len;
 }
@@ -277,7 +290,9 @@ void
 blobClose(blob *b)
 {
 	assert(b != NULL);
+#ifdef	CL_DEBUG
 	assert(b->magic == BLOBCLASS);
+#endif
 
 	if(b->isClosed) {
 		cli_warnmsg("Attempt to close a previously closed blob\n");
@@ -344,7 +359,9 @@ int
 blobGrow(blob *b, size_t len)
 {
 	assert(b != NULL);
+#ifdef	CL_DEBUG
 	assert(b->magic == BLOBCLASS);
+#endif
 
 	if(len == 0)
 		return CL_SUCCESS;
@@ -440,7 +457,9 @@ void
 fileblobDestroy(fileblob *fb)
 {
 	assert(fb != NULL);
-	assert(fb->b.magic == BLOBCLASS);
+#ifdef	CL_DEBUG
+	assert(b->magic == BLOBCLASS);
+#endif
 
 	if(fb->b.name && fb->fp) {
 		fclose(fb->fp);

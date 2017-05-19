@@ -70,7 +70,10 @@
 #include "others.h"
 #include "cltypes.h"
 #include "regex/regex.h"
+#ifdef  HAVE_LTDL
 #include "ltdl.h"
+#endif //  HAVE_LTDL
+
 #include "matcher-ac.h"
 #include "matcher-pcre.h"
 #include "default.h"
@@ -87,6 +90,8 @@ int (*cli_unrar_extract_next)(unrar_state_t *state, const char *dirname);
 void (*cli_unrar_close)(unrar_state_t *state);
 int have_rar = 0;
 static int is_rar_initd = 0;
+
+#ifdef  HAVE_LTDL
 
 static int warn_dlerror(const char *msg)
 {
@@ -170,6 +175,7 @@ static lt_dlhandle lt_dlfind(const char *name, const char *featurename)
     return rhandle;
 }
 
+
 static void cli_rarload(void) {
     lt_dlhandle rhandle;
 
@@ -191,6 +197,7 @@ static void cli_rarload(void) {
     }
     have_rar = 1;
 }
+#endif
 
 void cl_debug(void)
 {
@@ -301,10 +308,12 @@ int cl_init(unsigned int initoptions)
 	    return CL_EARG;
 	}
     }
+#ifdef  HAVE_LTDL
     /* put dlopen() stuff here, etc. */
     if (lt_init() == 0) {
 	cli_rarload();
     }
+#endif
     gettimeofday(&tv, (struct timezone *) 0);
     srand(pid + tv.tv_usec*(pid+1) + clock());
     rc = bytecode_init();
@@ -1277,10 +1286,10 @@ int cli_rmdirs(const char *dirname)
     chmod(dirname, 0700);
     if((dd = opendir(dirname)) != NULL) {
 	while(CLAMSTAT(dirname, &maind) != -1) {
+		closedir(dd);
 	    if(!rmdir(dirname)) break;
 	    if(errno != ENOTEMPTY && errno != EEXIST && errno != EBADF) {
 		cli_errmsg("cli_rmdirs: Can't remove temporary directory %s: %s\n", dirname, cli_strerror(errno, err, sizeof(err)));
-		closedir(dd);
 		return -1;
 	    }
 
@@ -1339,7 +1348,6 @@ int cli_rmdirs(const char *dirname)
 	return -1;
     }
 
-    closedir(dd);
     return 0;
 }
 #endif
