@@ -50,7 +50,7 @@ DIR *opendir(const char *name) {
 	return NULL;
     wcsncpy(d->entry, wpath, sizeof(d->entry) / sizeof(d->entry[0]));
     free(wpath);
-    d->entry[sizeof(d->entry) / sizeof(d->entry[0])] = L'\0';
+    d->entry[sizeof(d->entry) / sizeof(d->entry[0]) - 1] = L'\0';
     len = wcslen(d->entry);
 
     if(len >= sizeof(d->entry) / sizeof(d->entry[0]) - 4) {
