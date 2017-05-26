@@ -59,3 +59,4 @@ libclamav/c++/llvm/tools/llvmc/plugins/Base/Base.td
 *.exp
 *.ipdb
 *.dll
+/win32/ClamAV.VC.opendb

@@ -2768,8 +2768,9 @@ int cli_bytecode_runlsig(cli_ctx *cctx, struct cli_target_info *tinfo,
 {
     int ret;
     struct cli_bc_ctx ctx;
-    const struct cli_bc *bc = &bcs->all_bcs[bc_idx-1];
-    struct cli_pe_hook_data pehookdata;
+    //const struct cli_bc *bc = &bcs->all_bcs[bc_idx-1];
+	const struct cli_bc *bc = &bcs->all_bcs[bc_idx];
+	struct cli_pe_hook_data pehookdata;
 
     memset(&ctx, 0, sizeof(ctx));
     cli_bytecode_context_setfuncid(&ctx, bc, 0);
